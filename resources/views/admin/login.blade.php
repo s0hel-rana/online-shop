@@ -51,10 +51,10 @@
             <form action="{{ route('admin.authenticate') }}" method="post">
                 @csrf
                 <div class="form-group">
-                    <input type="email" name="email" class="form-control" placeholder="Enter your email">
+                    <input type="email" name="email" class="form-control" @error('email') is-invalid @enderror placeholder="Enter your email">
                 </div><!-- form-group -->
                 <div class="form-group">
-                    <input type="password" name="password" class="form-control" placeholder="Enter your password">
+                    <input type="password" name="password" class="form-control" @error('password') is-invalid @enderror placeholder="Enter your password">
                     <a href="" class="tx-info tx-12 d-block mg-t-10">Forgot password?</a>
                 </div><!-- form-group -->
                 <button type="submit" class="btn btn-info btn-block">Sign In</button>

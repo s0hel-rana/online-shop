@@ -10,13 +10,13 @@
     <meta name="twitter:site" content="@themepixels">
     <meta name="twitter:creator" content="@themepixels">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Starlight">
+    <meta name="twitter:title" content="Online Shop">
     <meta name="twitter:description" content="Premium Quality and Responsive UI for Dashboard.">
     <meta name="twitter:image" content="http://themepixels.me/starlight/img/starlight-social.png">
 
     <!-- Facebook -->
     <meta property="og:url" content="http://themepixels.me/starlight">
-    <meta property="og:title" content="Starlight">
+    <meta property="og:title" content="Online Shop">
     <meta property="og:description" content="Premium Quality and Responsive UI for Dashboard.">
 
     <meta property="og:image" content="http://themepixels.me/starlight/img/starlight-social.png">
@@ -29,7 +29,7 @@
     <meta name="description" content="Premium Quality and Responsive UI for Dashboard.">
     <meta name="author" content="ThemePixels">
 
-    <title>Starlight Responsive Bootstrap 4 Admin Template</title>
+    <title>Online Shop</title>
 
     <!-- vendor css -->
     <link href="{{ asset('backend') }}/lib/font-awesome/css/font-awesome.css" rel="stylesheet">
@@ -39,6 +39,7 @@
 
     <!-- Starlight CSS -->
     <link rel="stylesheet" href="{{ asset('backend') }}/css/starlight.css">
+    @stack('style')
 </head>
 
 <body>
@@ -268,6 +269,7 @@
     <script src="{{ asset('backend') }}/js/starlight.js"></script>
     <script src="{{ asset('backend') }}/js/ResizeSensor.js"></script>
     <script src="{{ asset('backend') }}/js/dashboard.js"></script>
+    @stack('script')
 </body>
 
 </html>
