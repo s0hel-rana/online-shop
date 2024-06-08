@@ -7,11 +7,11 @@
     <section class="content-header">
         @php
             $links = [
-            'Home'=>route('dashboard'),
+            'Home'=>'',
             'Category Entry'=>''
             ]
         @endphp
-        <x-bread-crumb-component title='Category' :links="$links"/>
+        {{-- <x-bread-crumb-component title='Category' :links="$links"/> --}}
     </section>
     <!-- Main content -->
     <section class="content">
@@ -19,7 +19,7 @@
             <div class="row">
                 <div class="col-12">
                     <!-- Horizontal Form -->
-                    <form action="{{route('admin.categories.store')}}" method="POST" class=""
+                    <form action="{{route('categories.store')}}" method="POST" class=""
                           enctype="multipart/form-data">
                         @csrf
                         <div class="card">
@@ -40,27 +40,8 @@
                                     </div>
                                     <div class="col-xl-6 col-md-8 col-12 mb-1">
                                         <div class="form-group">
-                                            <label>Parent</label>
-                                            <select class="select2 form-control" name="parent_id">
-                                                <option value="" selected disabled>Select One</option>
-                                                @forelse($categories as $row)
-                                                    <option
-                                                        value="{{ $row->id }}" {{ old('parent_id') == $row->id ? 'selected' : '' }}>{{ $row->name }}
-                                                    </option>
-                                                @empty
-                                                @endforelse
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-12 col-md-12 col-12 mb-1">
-                                        <div class="form-group">
-                                            <label for="description"><b>Description</b></label>
-                                            <textarea id="description" name="description"
-                                                      placeholder="Enter Description" class="form-control input-sm"
-                                                      rows="2">{{old('description')}}</textarea>
-                                            @if($errors->has('description'))
-                                                <small class="text-danger">{{$errors->first('description')}}</small>
-                                            @endif
+                                            <label for="image">Image</label>
+                                            <input type="file" class="form-control" id="image" name="image">
                                         </div>
                                     </div>
                                 </div>

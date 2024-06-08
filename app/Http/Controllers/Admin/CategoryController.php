@@ -20,13 +20,13 @@ class CategoryController extends Controller
             $categories = Category::latest();
             return DataTables::of($categories)
                 ->addIndexColumn()
-                // ->addColumn('action', function ($row) {
-                //     return view('admin.category.action-button', compact('row'));
-                // })
+                ->addColumn('action', function ($row) {
+                    return view('admin.category.action', compact('row'));
+                })
                 // ->addColumn('created_at', function ($row) {
                 //     return view('admin.common.created_at',compact('row'));
                 // })
-                // ->rawColumns(['created_at'])
+                ->rawColumns(['action'])
                 ->make(true);
         }
         return view('admin.category.index');
@@ -48,15 +48,25 @@ class CategoryController extends Controller
         $validated = $request->validated();
         DB::beginTransaction();
         try {
-            Category::create($validated);
+            $filename = null;
+            if ($request->hasfile('image')) {
+                $file = $request->file('image');
+                $filename = date('Ymdmhs') . '.' . $file->getClientOriginalExtension();
+                $file->move(public_path('/upload'), $filename);
+            }
+            if(isset($validated['image'])){
+                $validated['image'] = $filename ?? null;
+            }
+
+           Category::create($validated);
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
-            Toastr::info('Something went wrong!.', '', ["progressBar" => true]);
+            toastr()->info('Something went wrong!');
             return back();
         }
-        Toastr::success('Data Created Successfully!.', '', ["progressBar" => true]);
-        return redirect()->route('admin.categories.index');
+        toastr()->success('Data has been saved successfully!');
+        return redirect()->route('categories.index');
     }
 
     /**
@@ -70,9 +80,10 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Category $category)
+    public function edit($id)
     {
-        //
+        $category = Category::findOrFail(decrypt($id));
+        return view('admin.category.edit', compact('category'));
     }
 
     /**
@@ -88,11 +99,11 @@ class CategoryController extends Controller
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
-            Toastr::info('Something went wrong!.', '', ["progressBar" => true]);
+            toastr()->info('Something went wrong!');
             return back();
         }
-        Toastr::success('Data Updated Successfully!.', '', ["progressBar" => true]);
-        return redirect()->route('admin.categories.index');
+        toastr()->success('Data Updated Successfully!');
+        return redirect()->route('categories.index');
     }
 
     /**
@@ -106,10 +117,10 @@ class CategoryController extends Controller
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
-            Toastr::info('Something went wrong!.', '', ["progressBar" => true]);
+            toastr()->info('Something went wrong!');
             return back();
         }      
-        Toastr::success('Data Daleted Successfully!.', '', ["progressBar" => true]);
-        return redirect()->route('admin.categories.index');
+        toastr()->success('Data Daleted Successfully!');
+        return redirect()->route('categories.index');
     }
 }

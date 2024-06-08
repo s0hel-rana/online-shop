@@ -1,5 +1,5 @@
 <div class="project-actions text-right">
-    {{-- <form action="{{route('categories.destroy', $row->id)}}" method="post">
+    <form action="{{route('categories.destroy', $row->id)}}" method="post">
         <input type="hidden" name="_method" value="DELETE">
         @csrf
         <a href="{{ route('categories.edit', $row->id) }}" class="btn btn-info btn-xs">
@@ -13,5 +13,5 @@
         </a>
         <button id="btnDelete" class="btn btn-danger btn-xs"> <i class="fas fa-trash">
             </i> Delete</button>
-    </form> --}}
+    </form>
 </div>

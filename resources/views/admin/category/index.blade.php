@@ -51,12 +51,12 @@
                         data: 'slug',
                         title: 'Slug'
                     },
-                    // {
-                    //     data: 'action',
-                    //     title: 'Action',
-                    //     orderable: false,
-                    //     searchable: false
-                    // },
+                    {
+                        data: 'action',
+                        title: 'Action',
+                        orderable: false,
+                        searchable: false
+                    },
                 ]
             });
         });
