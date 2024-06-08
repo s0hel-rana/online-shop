@@ -16,6 +16,7 @@ class AdminController extends Controller
 
     public function authenticate(Request $request)
     {
+        // return $request->all();
         $validator = Validator::make($request->all(),[
             'email'=>'required|email',
             'password'=>'required'

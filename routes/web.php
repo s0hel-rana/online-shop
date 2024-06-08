@@ -22,7 +22,7 @@ Route::get('/', function () {
 Route::group(['prefix' => 'admin'],function(){
     Route::group(['middleware'=>'admin.guest'],function(){
         Route::get('login',[AdminController::class,'index'])->name('admin.login');
-        Route::get('authenticate',[AdminController::class,'authenticate'])->name('admin.authenticate');
+        Route::post('authenticate',[AdminController::class,'authenticate'])->name('admin.authenticate');
     });
 
     Route::group(['middleware'=>'admin.auth'],function(){

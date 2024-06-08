@@ -10,7 +10,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return 'welcome';
+        return view('admin.dashboard');
     }
 
     public function logout()
