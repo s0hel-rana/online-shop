@@ -1,68 +1,98 @@
-@extends('admin.master')
+@extends('admin.layouts.app')
 @section('title')
-    Category
+    Category Entry
+@endsection
+@section('style')
+    <!-- Select2 -->
+    <link rel="stylesheet" href="{{ asset('backend/assets/plugins/select2/css/select2.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('backend/assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
 @endsection
 @section('content')
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-        @php
-            $links = [
-            'Home'=>'',
-            'Category Entry'=>''
-            ]
-        @endphp
-        {{-- <x-bread-crumb-component title='Category' :links="$links"/> --}}
-    </section>
+@php
+$links = [
+'Home'=>'',
+'Category Entry'=>''
+]
+@endphp
+<x-breadcrumb title='Category' :links="$links"/>
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <!-- Horizontal Form -->
                     <form action="{{route('categories.store')}}" method="POST" class=""
                           enctype="multipart/form-data">
                         @csrf
-                        <div class="card">
+                        <!-- Horizontal Form -->
+                        <div class="card card-info">
                             <div class="card-header">
-                                <h4 class="card-title">Category Entry</h4>
+                                <h3 class="card-title">Category Entry</h3>
+                                <div class="card-tools">
+                                    <a href="{{route('categories.index')}}" class="btn btn-sm btn-primary">
+                                        <i class="fa fa-list"
+                                           aria-hidden="true"></i>
+                                        &nbsp;See List
+
+                                    </a>
+                                </div>
                             </div>
+                            <!-- /.card-header -->
+                            <!-- form start -->
+
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-xl-6 col-md-8 col-12 mb-1">
+                                    <div class="col-xl-4 col-md-4 col-12 mb-1">
                                         <div class="form-group">
                                             <label for="name">Name</label>
                                             <input type="text" class="form-control" id="name" name="name"
-                                                   placeholder="Enter Name" value="{{old('name')}}">
+                                                   placeholder="Enter Name"
+                                                   value="{{old('name')}}">
                                             @if($errors->has('name'))
                                                 <small class="text-danger">{{$errors->first('name')}}</small>
                                             @endif
                                         </div>
                                     </div>
-                                    <div class="col-xl-6 col-md-8 col-12 mb-1">
+                                    <div class="col-xl-4 col-md-4 col-12 mb-1">
                                         <div class="form-group">
                                             <label for="image">Image</label>
-                                            <input type="file" class="form-control" id="image" name="image">
+                                            <input type="file" name="image" id="image">
                                         </div>
                                     </div>
                                 </div>
-                                <button class="btn btn-primary waves-effect waves-float waves-light float-right"
-                                        type="submit">Submit
+                            </div>
+
+                            <div class="card-footer">
+                                <button class="btn btn-info float-right"><i class="fa fa-check" aria-hidden="true"></i>
+                                    Submit
                                 </button>
                             </div>
                         </div>
+                        <!-- /.card -->
+                    </form>
                 </div>
-                </form>
-                <!-- /.card -->
+                <div class="col-2"></div>
             </div>
-            <div class="col-2"></div>
-        </div>
-        <!-- /.row -->
+            <!-- /.row -->
 
         </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
 @endsection
-@push('script')
 
+@push('js')
+    <!-- Select2 -->
+    <script src="{{ asset('assets/plugins/select2/js/select2.full.min.js')}}"></script>
+    <script>
+        $(function () {
+            //Initialize Select2 Elements
+            $('.select2').select2()
+
+            //Initialize Select2 Elements
+            $('.select2bs4').select2({
+                theme: 'bootstrap4'
+            })
+
+        })
+    </script>
 
 @endpush

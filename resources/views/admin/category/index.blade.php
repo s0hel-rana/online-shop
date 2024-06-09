@@ -1,79 +1,107 @@
-@extends('admin.master')
-@section('content')
-    @push('style')
-        <!-- vendor css -->
-        <link href="{{ asset('backend') }}/lib/font-awesome/css/font-awesome.css" rel="stylesheet">
-        <link href="{{ asset('backend') }}/lib/Ionicons/css/ionicons.css" rel="stylesheet">
-        <link href="{{ asset('backend') }}/lib/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet">
-        <link href="{{ asset('backend') }}/lib/highlightjs/github.css" rel="stylesheet">
-        <link href="{{ asset('backend') }}/lib/datatables/jquery.dataTables.css" rel="stylesheet">
-        <link href="{{ asset('backend') }}/lib/select2/css/select2.min.css" rel="stylesheet">
-
-        <!-- Starlight CSS -->
-        {{-- <link rel="stylesheet" href="{{ asset('backend') }}/css/starlight.css"> --}}
-    @endpush
-    @php
-        $links = [
-            'Home' => '',
-            'Category list' => '',
-        ];
-    @endphp
-    <x-breadcrumb title='Category' :links="$links" />
-
-    <div class="card pd-5 pd-sm-10">
-        <div class="card-body table-responsive">
-            <table id="datatable" class="table table-bordered table-hover">
-            </table>
-        </div><!-- table-wrapper -->
-    </div><!-- card -->
+@extends('admin.layouts.app')
+@section('title')
+Category List
 @endsection
+@section('content')
+@php
+$links = [
+'Home'=>'',
+'Category list'=>''
+]
+@endphp
+<x-breadcrumb title='Category' :links="$links" />
 
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-info">
+                    <div class="card-header">
+                        <h3 class="card-title">Category List</h3>
+                        <div class="card-tools">
+                            <a href="{{route('categories.create')}}">
+                                <button class="btn btn-sm btn-primary"><i class="fa fa-plus-circle"
+                                        aria-hidden="true"></i> &nbsp;Add Category
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body table-responsive">
+                        <table id="dataTable" class="table table-bordered table-hover">
+                            {{-- show from datatable--}}
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+
+            </div>
+        </div>
+        <!-- /.row -->
+
+    </div><!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+@endsection
+@section('css')
+<!-- DataTables -->
+<link rel="stylesheet" href="{{ asset('backend/assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
+@endsection
+@push('style')
+
+@endpush
+@section('js')
+<!-- DataTables -->
+<script src="{{ asset('backend/assets/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+<script src="{{ asset('backend/assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+<script src="{{ asset('backend/assets/plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
+<script src="{{ asset('backend/assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
+@endsection
 @push('script')
-    <script src="{{ asset('backend') }}/lib/jquery/jquery.js"></script>
-    <script src="{{ asset('backend') }}/lib/popper.js/popper.js"></script>
-    {{-- <script src="{{ asset('backend') }}/lib/bootstrap/bootstrap.js"></script> --}}
-    <script src="{{ asset('backend') }}/lib/perfect-scrollbar/js/perfect-scrollbar.jquery.js"></script>
-    <script src="{{ asset('backend') }}/lib/highlightjs/highlight.pack.js"></script>
-    <script src="{{ asset('backend') }}/lib/datatables/jquery.dataTables.js"></script>
-    <script src="{{ asset('backend') }}/lib/datatables-responsive/dataTables.responsive.js"></script>
-    <script src="{{ asset('backend') }}/lib/select2/js/select2.min.js"></script>
-
-    {{-- <script src="{{ asset('backend') }}/js/starlight.js"></script> --}}
-    <script type="text/javascript">
-        $(function() {
-            var table = $('#datatable').DataTable({
+<!-- page script -->
+<script>
+    $(document).ready(function () {
+            $('#dataTable').dataTable({
                 stateSave: true,
                 responsive: true,
                 serverSide: true,
                 processing: true,
-                ajax: "{{ route('categories.index') }}",
+                ajax: {
+                    url: "{{ route('categories.index') }}",
+                },
                 columns: [{
-                        data: "DT_RowIndex",
-                        title: "SL",
-                        name: "DT_RowIndex",
-                        searchable: false,
-                        orderable: false
+                    data: "DT_RowIndex",
+                    title: "SL",
+                    name: "DT_RowIndex",
+                    searchable: false,
+                    orderable: false
+                },
+                    {
+                        data: "name",
+                        title: "Name",
+                        searchable: true
                     },
                     {
-                        data: 'name',
-                        title: 'Name'
+                        data: "slug",
+                        title: "Slug",
+                        searchable: true
                     },
                     {
-                        data: 'slug',
-                        title: 'Slug'
+                        data: "created_at",
+                        title: "Created at",
+                        searchable: true
                     },
                     {
-                        data: 'created_at',
-                        title: 'Created At'
-                    },
-                    {
-                        data: 'action',
-                        title: 'Action',
+                        data: "action",
+                        title: "Action",
                         orderable: false,
                         searchable: false
                     },
-                ]
+                ],
             });
-        });
-    </script>
+        })
+</script>
 @endpush
