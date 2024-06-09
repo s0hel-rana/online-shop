@@ -23,10 +23,10 @@ class CategoryController extends Controller
                 ->addColumn('action', function ($row) {
                     return view('admin.category.action', compact('row'));
                 })
-                // ->addColumn('created_at', function ($row) {
-                //     return view('admin.common.created_at',compact('row'));
-                // })
-                ->rawColumns(['action'])
+                ->addColumn('created_at', function ($row) {
+                    return view('admin.common.created_at',compact('row'));
+                })
+                ->rawColumns(['action','created_at'])
                 ->make(true);
         }
         return view('admin.category.index');

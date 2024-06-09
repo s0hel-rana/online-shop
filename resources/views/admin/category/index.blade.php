@@ -12,10 +12,17 @@
     <!-- Starlight CSS -->
     <link rel="stylesheet" href="{{ asset('backend') }}/css/starlight.css">
 @endpush
+@php
+$links = [
+'Home'=>'',
+'Category list'=>''
+]
+@endphp
+<x-breadcrumb title='Category' :links="$links"/>
     
 <div class="card pd-5 pd-sm-10">
-    <div class="table-wrapper">
-        <table id="datatable" class="table display responsive nowrap">
+    <div class="card-body table-responsive">
+        <table id="datatable" class="table table-bordered table-hover">
         </table>
     </div><!-- table-wrapper -->
 </div><!-- card -->
@@ -36,12 +43,17 @@
     <script type="text/javascript">
         $(function() {
             var table = $('#datatable').DataTable({
-                processing: true,
+                stateSave: true,
+                responsive: true,
                 serverSide: true,
+                processing: true,
                 ajax: "{{ route('categories.index') }}",
                 columns: [{
-                        data: 'id',
-                        title: 'SL'
+                    data: "DT_RowIndex",
+                    title: "SL",
+                    name: "DT_RowIndex",
+                    searchable: false,
+                    orderable: false
                     },
                     {
                         data: 'name',
@@ -50,6 +62,10 @@
                     {
                         data: 'slug',
                         title: 'Slug'
+                    },
+                    {
+                        data: 'created_at',
+                        title: 'Created At'
                     },
                     {
                         data: 'action',
