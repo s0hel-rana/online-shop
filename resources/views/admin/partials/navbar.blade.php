@@ -140,7 +140,7 @@
         <li class="nav-item dropdown">
             <div class="user-panel d-flex" data-toggle="dropdown">
                 <div class="image">
-                    <img src="{{ asset('assets/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2"
+                    <img src="{{ asset('backend/assets/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2"
                          alt="User Image">
                 </div>
                 <div class="info">

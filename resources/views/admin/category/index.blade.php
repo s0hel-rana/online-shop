@@ -17,24 +17,65 @@ $links = [
 
         <div class="row">
             <div class="col-12">
-                <div class="card card-info">
-                    <div class="card-header">
-                        <h3 class="card-title">Category List</h3>
-                        <div class="card-tools">
-                            <a href="{{route('categories.create')}}">
-                                <button class="btn btn-sm btn-primary"><i class="fa fa-plus-circle"
-                                        aria-hidden="true"></i> &nbsp;Add Category
-                                </button>
-                            </a>
+                <div class="row">
+                    <div class="col-lg-4 col-md-4">
+                        <form @if(isset($category)) action="{{route('categories.update', $category->id)}}" @else action="{{route('categories.store')}}" @endif method="POST" class="" enctype="multipart/form-data">
+                            @csrf
+                            @if(isset($category))
+                            @method('PUT')
+                            @endif
+                            <div class="card card-info">
+                                <div class="card-header">
+                                    <h3 class="card-title">Category Entry</h3>
+                                    <div class="card-tools">
+
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-xl-12 col-md-12 col-12 mb-1">
+                                            <x-forms.text label="Name" inputName="name"
+                                                placeholder="Enter Name" :isRequired='true'
+                                                :isReadonly='false' :defaultValue="isset($category) ? $category->name : ''" />
+                                        </div>
+                                        <div class="col-xl-12 col-md-12 col-12 mb-1">
+                                            <div class="form-group">
+                                                <label for="serial_no">Image</label>
+                                                <input type="file" name="image" id="image">
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <button class="btn btn-info btn-xs waves-effect waves-float waves-light float-right ml-1"
+                                        type="submit">Submit
+                                    </button>
+                                    <a href="{{ route('categories.index') }}"
+                                   class="btn btn-warning btn-xs waves-effect waves-float waves-light float-right">Refresh</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-lg-8 col-md-8">
+                        <div class="card card-info">
+                            <div class="card-header">
+                                <h3 class="card-title">Category List</h3>
+                                <div class="card-tools">
+                                    <a href="{{route('categories.create')}}">
+                                        <button class="btn btn-sm btn-primary"><i class="fa fa-plus-circle"
+                                                aria-hidden="true"></i> &nbsp;Add Category
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body table-responsive">
+                                <table id="dataTable" class="table table-bordered table-hover">
+                                    {{-- show from datatable--}}
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
                         </div>
                     </div>
-                    <!-- /.card-header -->
-                    <div class="card-body table-responsive">
-                        <table id="dataTable" class="table table-bordered table-hover">
-                            {{-- show from datatable--}}
-                        </table>
-                    </div>
-                    <!-- /.card-body -->
                 </div>
                 <!-- /.card -->
 

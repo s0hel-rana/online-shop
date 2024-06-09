@@ -37,7 +37,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.category.create');
+        //
     }
 
     /**
@@ -83,7 +83,7 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $category = Category::findOrFail(decrypt($id));
-        return view('admin.category.edit', compact('category'));
+        return view('admin.category.index', compact('category'));
     }
 
     /**

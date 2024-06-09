@@ -1,10 +1,11 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    {{-- <a href="#" class="brand-link">
-        <img src="{{ asset('upload').'/'.getSettingValue('company_logo') }}" alt="Logo"
+    <a href="#" class="brand-link">
+        {{-- {{ asset('upload').'/'.getSettingValue('company_logo') }} --}}
+        <img src="#" alt="Logo"
             class="brand-image img-circle elevation-3" style="opacity: .8; margin-top: 1px;">
-        <span class="brand-text font-weight-light">CakeTown</span>
-    </a> --}}
+        <span class="brand-text font-weight-light">Online Shop</span>
+    </a>
 
     <!-- Sidebar -->
     <div class="sidebar">
