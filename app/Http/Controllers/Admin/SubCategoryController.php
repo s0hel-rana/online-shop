@@ -4,24 +4,25 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
-use App\Http\Requests\StoreCategoryRequest;
-use App\Http\Requests\UpdateCategoryRequest;
+use App\Models\SubCategory;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
 
-class CategoryController extends Controller
+class SubCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
+        $categories = Category::all();
         if (\request()->ajax()) {
-            $categories = Category::latest();
-            return DataTables::of($categories)
+            $subCategories = SubCategory::with('category')->latest();
+            return DataTables::of($subCategories)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                    return view('admin.category.action', compact('row'));
+                    return view('admin.sub_category.action', compact('row'));
                 })
                 ->addColumn('created_at', function ($row) {
                     return view('admin.common.created_at',compact('row'));
@@ -29,7 +30,7 @@ class CategoryController extends Controller
                 ->rawColumns(['action','created_at'])
                 ->make(true);
         }
-        return view('admin.category.index');
+        return view('admin.sub_category.index',compact('categories'));
     }
 
     /**
@@ -43,22 +44,15 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreCategoryRequest $request)
+    public function store(Request $request)
     {
-        $validated = $request->validated();
+        $validated = $request->validate([
+            'name' => 'required',
+            'category_id' => 'required',
+        ]);
         DB::beginTransaction();
         try {
-            $filename = null;
-            if ($request->hasfile('image')) {
-                $file = $request->file('image');
-                $filename = date('Ymdmhs') . '.' . $file->getClientOriginalExtension();
-                $file->move(public_path('/upload'), $filename);
-            }
-            if(isset($validated['image'])){
-                $validated['image'] = $filename ?? null;
-            }
-
-           Category::create($validated);
+           SubCategory::create($validated);
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
@@ -66,13 +60,13 @@ class CategoryController extends Controller
             return back();
         }
         toastr()->success('Data has been saved successfully!');
-        return redirect()->route('categories.index');
+        return redirect()->route('sub-categories.index');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Category $category)
+    public function show(string $id)
     {
         //
     }
@@ -80,22 +74,22 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit(string $id)
     {
-        $category = Category::findOrFail(decrypt($id));
-        return view('admin.category.index', compact('category'));
+        $subCategory = SubCategory::findOrFail(decrypt($id));
+        return view('admin.sub_category.index', compact('subCategory'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCategoryRequest $request, $id)
+    public function update(Request $request, string $id)
     {
         $validated = $request->validated();
         DB::beginTransaction();
         try {
-            $category = Category::findOrFail($id);
-            $category->update($validated);
+            $subCategory = SubCategory::findOrFail($id);
+            $subCategory->update($validated);
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
@@ -103,17 +97,17 @@ class CategoryController extends Controller
             return back();
         }
         toastr()->success('Data Updated Successfully!');
-        return redirect()->route('categories.index');
+        return redirect()->route('sub-categories.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy(string $id)
     {
         DB::beginTransaction();
         try {
-            Category::findOrFail(decrypt($id))->delete();
+            SubCategory::findOrFail(decrypt($id))->delete();
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
@@ -121,6 +115,6 @@ class CategoryController extends Controller
             return back();
         }      
         toastr()->success('Data Daleted Successfully!');
-        return redirect()->route('categories.index');
+        return redirect()->route('sub-categories.index');
     }
 }

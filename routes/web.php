@@ -29,6 +29,8 @@ Route::group(['prefix' => 'admin'],function(){
         Route::get('dashboard',[HomeController::class,'index'])->name('admin.dashboard');
         Route::get('logout',[HomeController::class,'logout'])->name('admin.logout');
         Route::resource('categories','App\Http\Controllers\Admin\CategoryController');
+        Route::resource('sub-categories','App\Http\Controllers\Admin\SubCategoryController');
+        Route::resource('brands','App\Http\Controllers\Admin\BrandController');
     });
 
 });

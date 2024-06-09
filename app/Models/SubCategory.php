@@ -1,22 +1,25 @@
 <?php
 
-namespace App\Models\Admin;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
-class Category extends Model
+class SubCategory extends Model
 {
     use HasFactory;
+
     protected $guarded = ['id'];
 
-
+    public function category(){
+        return $this->belongsTo(Category::class,'category_id');
+    }
     protected static function boot(){
         parent::boot();
-        static::created(function($category){
-            $category->slug = $category->createSlug($category->name);
-            $category->save();
+        static::created(function($subCategory){
+            $subCategory->slug = $subCategory->createSlug($subCategory->name);
+            $subCategory->save();
         });
     }
 
@@ -34,5 +37,3 @@ class Category extends Model
             return $slug;
     }
 }
-
-
