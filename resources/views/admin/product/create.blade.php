@@ -43,26 +43,82 @@ $links = [
                                 <div class="row">
                                     <div class="col-xl-4 col-md-4 col-12 mb-1">
                                         <div class="form-group">
-                                            <label for="name">Name</label>
-                                            <input type="text" class="form-control" id="name" name="name"
-                                                   placeholder="Enter Name"
-                                                   value="{{old('name')}}">
-                                            @if($errors->has('name'))
-                                                <small class="text-danger">{{$errors->first('name')}}</small>
-                                            @endif
+                                            <x-forms.text label="Title" inputName="title"
+                                                placeholder="Enter Title" :isRequired='true' :isReadonly='false'
+                                                defaultValue="" />
                                         </div>
                                     </div>
                                     <div class="col-xl-4 col-md-4 col-12 mb-1">
                                         <div class="form-group">
-                                            <label for="image">Image</label>
-                                            <input type="file" name="image" id="image">
+                                            <label for="description">Description</label>
+                                            <textarea name="description" class="form-control" id="description" cols="30" rows="3"></textarea>
                                         </div>
                                     </div>
+                                    <div class="row">
+                                        <div class="col-xl-4 col-md-4 col-12 mb-1">
+                                            <x-forms.text label="Price" inputName="price"
+                                                placeholder="Enter Price" :isRequired='true' :isReadonly='false'
+                                                defaultValue="" />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xl-4 col-md-4 col-12 mb-1">
+                                            <x-forms.text label="Compare Price" inputName="compare_price"
+                                                placeholder="Enter Compare Price" :isRequired='true' :isReadonly='false'
+                                                defaultValue="" />
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4 col-md-4 col-12 mb-1">
+                                        <x-forms.select label="Category" inputName="category_id"
+                                            placeholder="Select One" :isRequired='true' :isReadonly='false' defaultValue=""
+                                            :options="$categories" optionId="id" optionValue="name" />
+                                    </div>
+                                    <div class="col-xl-4 col-md-4 col-12 mb-1">
+                                        <x-forms.select label="Sub Category" inputName="sub_category_id"
+                                            placeholder="Select One" :isRequired='true' :isReadonly='false' defaultValue=""
+                                            :options="$subCategories" optionId="id" optionValue="name" />
+                                    </div>
+                                    <div class="col-xl-4 col-md-4 col-12 mb-1">
+                                        <x-forms.select label="Brand" inputName="brand_id"
+                                            placeholder="Select One" :isRequired='true' :isReadonly='false' defaultValue=""
+                                            :options="$brands" optionId="id" optionValue="name" />
+                                    </div>
+                                    <div class="col-xl-4 col-md-4 col-12 mb-1">
+                                        <x-forms.static-select label="Featured" inputName="is_featured" placeholder="Select One" :isRequied='true' :isReadonly='false' defualtValue="" :options="['yes','no']" />
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xl-4 col-md-4 col-12 mb-1">
+                                            <x-forms.text label="SKU" inputName="sku"
+                                                placeholder="Enter SKU" :isRequired='true' :isReadonly='false'
+                                                defaultValue="" />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xl-4 col-md-4 col-12 mb-1">
+                                            <x-forms.text label="Barcode" inputName="barcode"
+                                                placeholder="Enter Barcode" :isRequired='true' :isReadonly='false'
+                                                defaultValue="" />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xl-4 col-md-4 col-12 mb-1">
+                                            <input type="hidden" name="track_qty" value="no">
+                                            <input type="checkbox" name="track_qty"  value="yes" checked>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xl-4 col-md-4 col-12 mb-1">
+                                            <x-forms.text label="Quantity" inputName="qty"
+                                                placeholder="Enter Quantity" :isRequired='true' :isReadonly='false'
+                                                defaultValue="" />
+                                        </div>
+                                    </div>
+                                    
                                 </div>
                             </div>
 
                             <div class="card-footer">
-                                <button class="btn btn-info float-right"><i class="fa fa-check" aria-hidden="true"></i>
+                                <button class="btn btn-info btn-sm float-right"><i class="fa fa-check" aria-hidden="true"></i>
                                     Submit
                                 </button>
                             </div>
