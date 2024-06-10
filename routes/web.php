@@ -21,6 +21,7 @@ Route::group(['prefix' => 'admin'],function(){
         Route::resource('categories','App\Http\Controllers\Admin\CategoryController');
         Route::resource('sub-categories','App\Http\Controllers\Admin\SubCategoryController');
         Route::resource('brands','App\Http\Controllers\Admin\BrandController');
+        Route::resource('products','App\Http\Controllers\Admin\ProductController');
     });
 
 });
