@@ -11,61 +11,44 @@
     <div class="sidebar">
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-
                 <li class="nav-item menu-open">
-                    <a href="#" class="nav-link active">
+                    <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                            Dashboard
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
+                        Dashboard
                     </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="./index.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Dashboard v1</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="./index2.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Dashboard v2</p>
-                            </a>
-                        </li>
-                    </ul>
                 </li>
-                <li class="nav-item">
-                    <a href="pages/widgets.html" class="nav-link">
-                        <i class="nav-icon fas fa-th"></i>
-                        <p>
-                            Widgets
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
+                <li class="nav-item {{ (Request::segment(2) == 'categories'|| Request::segment(2) == 'sub-categories' || Request::segment(2) == 'brands')?'menu-open':''}}">
+                    <a href="#"
+                       class="nav-link {{ (Request::segment(2) == 'categories'|| Request::segment(2) == 'sub-categories' || Request::segment(2) == 'brands' )?' active':''}}">
+                       <i class="nav-icon fas fa-th"></i>
+                       <p>
+                            Products
+                           <i class="right fas fa-angle-left"></i>
+                       </p>
+                   </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="pages/layout/top-nav.html" class="nav-link">
+                            <a href="{{ route('categories.index') }}" class="nav-link {{ (Request::segment(2) == 'categories' )?' active-color':''}}">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Top Navigation</p>
+                                <p>Category</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
+                            <a href="{{ route('sub-categories.index') }}" class="nav-link {{ (Request::segment(2) == 'sub-categories' )?' active-color':''}}">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Top Navigation + Sidebar</p>
+                                <p>Sub Category</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/layout/boxed.html" class="nav-link">
+                            <a href="{{ route('brands.index') }}" class="nav-link {{ (Request::segment(2) == 'brands' )?' active-color':''}}">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Boxed</p>
+                                <p>Brand</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/layout/collapsed-sidebar.html" class="nav-link">
+                            <a href="#" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Collapsed Sidebar</p>
+                                <p>Product</p>
                             </a>
                         </li>
                     </ul>

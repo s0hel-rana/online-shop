@@ -46,11 +46,11 @@ $links = [
                                         </div>
 
                                     </div>
-                                    <button class="btn btn-info btn-xs waves-effect waves-float waves-light float-right ml-1"
+                                    <button class="btn btn-info btn-sm waves-effect waves-float waves-light float-right ml-1"
                                         type="submit">Submit
                                     </button>
                                     <a href="{{ route('categories.index') }}"
-                                   class="btn btn-warning btn-xs waves-effect waves-float waves-light float-right">Refresh</a>
+                                   class="btn btn-warning btn-sm waves-effect waves-float waves-light float-right">Refresh</a>
                                 </div>
                             </div>
                         </form>

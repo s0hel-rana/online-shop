@@ -41,14 +41,14 @@ Sub Category List
                                     </div>
                                     <div class="col-xl-12 col-md-12 col-12 mb-1">
                                         <x-forms.select label="Category" inputName="category_id"
-                                            placeholder="Select One" :isRequired='true' :isReadonly='false' :defaultValue="isset($subCategory) ? $subCategory->categories->name : ''"
+                                            placeholder="Select One" :isRequired='true' :isReadonly='false' :defaultValue="isset($subCategory) ? $subCategory->category_id : ''"
                                             :options="$categories" optionId="id" optionValue="name" />
                                     </div>
-                                    <button class="btn btn-info waves-effect waves-float waves-light float-right ml-1"
+                                    <button class="btn btn-info btn-sm waves-effect waves-float waves-light float-right ml-1"
                                         type="submit">Submit
                                     </button>
                                     <a href="{{ route('sub-categories.index') }}"
-                                   class="btn btn-warning waves-effect waves-float waves-light float-right">Refresh</a>
+                                   class="btn btn-warning btn-sm waves-effect waves-float waves-light float-right">Refresh</a>
                                 </div>
                             </div>
                         </form>

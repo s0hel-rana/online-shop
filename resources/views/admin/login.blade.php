@@ -1,26 +1,75 @@
-
-<div class="card">
-    <div class="d-flex align-items-center justify-content-center bg-sl-primary ht-100v">
-
-        <div class="login-wrapper wd-300 wd-xs-350 pd-25 pd-xs-40 bg-white">
-            <div class="signin-logo tx-center tx-24 tx-bold tx-inverse">Online Shop <span
-                    class="tx-info tx-normal">admin</span></div>
-            {{-- <div class="tx-center mg-b-60">Professional Admin Template Design</div> --}}
-            <form action="{{ route('admin.authenticate') }}" method="post">
-                @csrf
-                <div class="form-group">
-                    <input type="email" name="email" class="form-control" @error('email') is-invalid @enderror placeholder="Enter your email">
-                </div><!-- form-group -->
-                <div class="form-group">
-                    <input type="password" name="password" class="form-control" @error('password') is-invalid @enderror placeholder="Enter your password">
-                    <a href="" class="tx-info tx-12 d-block mg-t-10">Forgot password?</a>
-                </div><!-- form-group -->
-                <button type="submit" class="btn btn-info btn-block">Sign In</button>
-                <div class="mg-t-60 tx-center">Not yet a member? <a href="page-signup.html" class="tx-info">Sign Up</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Online Shop</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet" href="{{ asset('backend/assets/plugins/fontawesome-free/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('backend/assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('backend/assets/dist/css/adminlte.min.css?v=3.2.0') }}">
+</head>
+<body class="hold-transition login-page">
+    <div class="login-box">
+        <div class="login-logo">
+            <a href="{{ asset('backend/assets/index2.html') }}"><b>Admin</b></a>
+        </div>
+        <div class="card">
+            <div class="card-body login-card-body">
+                <p class="login-box-msg">Sign in to start your session</p>
+                <form action="{{ route('admin.authenticate') }}" method="post">
+                    @csrf
+                    <div class="input-group mb-3">
+                        <input type="email" name="email" @error('email') is-invalid @enderror class="form-control" placeholder="Email">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="password" name="password" @error('password') is-invalid @enderror class="form-control" placeholder="Password">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="icheck-primary">
+                                <input type="checkbox" id="remember">
+                                <label for="remember">
+                                    Remember Me
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                        </div>
+                    </div>
+                </form>
+                <div class="social-auth-links text-center mb-3">
+                    <p>- OR -</p>
+                    <a href="#" class="btn btn-block btn-primary">
+                        <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
+                    </a>
+                    <a href="#" class="btn btn-block btn-danger">
+                        <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
+                    </a>
                 </div>
-                </from>
-    
-        </div><!-- login-wrapper -->
-    </div><!-- d-flex -->
+                <p class="mb-1">
+                    <a href="forgot-password.html">I forgot my password</a>
+                </p>
+                <p class="mb-0">
+                    <a href="#" class="text-center">Register a new membership</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <script src="{{ asset('backend/assets/plugins/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('backend/assets/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('backend/assets/dist/js/adminlte.min.js?v=3.2.0') }}"></script>
+</body>
 
-</div>
+</html>
