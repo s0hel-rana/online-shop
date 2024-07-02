@@ -24,15 +24,15 @@ class Product extends Model
     protected static function boot(){
         parent::boot();
         static::created(function($product){
-            $product->slug = $product->createSlug($product->name);
+            $product->slug = $product->createSlug($product->title);
             $product->save();
         });
     }
 
-    private function createSlug($name){
-        if(static::whereSlug($slug = Str::slug($name))->exists()){
+    private function createSlug($title){
+        if(static::whereSlug($slug = Str::slug($title))->exists()){
     
-            $max = static::whereTitle($name)->latest('id')->skip(1)->value('slug');
+            $max = static::whereTitle($title)->latest('id')->skip(1)->value('slug');
             if(is_numeric($max[-1])){
                 return preg_replace_callback('/(\d+)$/', function($matches){
                     return $matches[1] + 1;

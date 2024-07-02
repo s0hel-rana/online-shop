@@ -26,7 +26,7 @@ class SubCategory extends Model
     private function createSlug($name){
         if(static::whereSlug($slug = Str::slug($name))->exists()){
     
-            $max = static::whereTitle($name)->latest('id')->skip(1)->value('slug');
+            $max = static::whereName($name)->latest('id')->skip(1)->value('slug');
             if(is_numeric($max[-1])){
                 return preg_replace_callback('/(\d+)$/', function($matches){
                     return $matches[1] + 1;

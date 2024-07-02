@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreProductRequest;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
@@ -48,14 +49,16 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreProductRequest $request)
     {
+        // dd($request->validated());
         $validated = $request->validated();
         DB::beginTransaction();
         try {
             Product::create($validated);
             DB::commit();
         } catch (\Exception $e) {
+            // return $e;
             DB::rollBack();
             toastr()->info('Something went wrong!');
             return back();

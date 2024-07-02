@@ -51,22 +51,18 @@ $links = [
                                     <div class="col-xl-4 col-md-4 col-12 mb-1">
                                         <div class="form-group">
                                             <label for="description">Description</label>
-                                            <textarea name="description" class="form-control" id="description" cols="30" rows="3"></textarea>
+                                            <textarea name="description" class="form-control" id="description" cols="5" rows="1"></textarea>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-xl-4 col-md-4 col-12 mb-1">
-                                            <x-forms.text label="Price" inputName="price"
-                                                placeholder="Enter Price" :isRequired='true' :isReadonly='false'
-                                                defaultValue="" />
-                                        </div>
+                                    <div class="col-xl-4 col-md-4 col-12 mb-1">
+                                        <x-forms.text label="Price" inputName="price"
+                                            placeholder="Enter Price" :isRequired='true' :isReadonly='false'
+                                            defaultValue="" />
                                     </div>
-                                    <div class="row">
-                                        <div class="col-xl-4 col-md-4 col-12 mb-1">
-                                            <x-forms.text label="Compare Price" inputName="compare_price"
-                                                placeholder="Enter Compare Price" :isRequired='true' :isReadonly='false'
-                                                defaultValue="" />
-                                        </div>
+                                    <div class="col-xl-4 col-md-4 col-12 mb-1">
+                                        <x-forms.text label="Compare Price" inputName="compare_price"
+                                            placeholder="Enter Compare Price" :isRequired='true' :isReadonly='false'
+                                            defaultValue="" />
                                     </div>
                                     <div class="col-xl-4 col-md-4 col-12 mb-1">
                                         <x-forms.select label="Category" inputName="category_id"
@@ -83,35 +79,30 @@ $links = [
                                             placeholder="Select One" :isRequired='true' :isReadonly='false' defaultValue=""
                                             :options="$brands" optionId="id" optionValue="name" />
                                     </div>
+                                    {{-- <div class="col-xl-4 col-md-4 col-12 mb-1">
+                                        <x-forms.static-select label="Featured" inputName="is_featured"
+                                            placeholder="Select One" :isRequired='true' :isReadonly='false' defaultValue=""
+                                            :options="['Yes','No']" />
+                                    </div> --}}
                                     <div class="col-xl-4 col-md-4 col-12 mb-1">
-                                        <x-forms.static-select label="Featured" inputName="is_featured" placeholder="Select One" :isRequied='true' :isReadonly='false' defualtValue="" :options="['yes','no']" />
+                                        <x-forms.text label="SKU" inputName="sku"
+                                            placeholder="Enter SKU" :isRequired='true' :isReadonly='false'
+                                            defaultValue="" />
                                     </div>
-                                    <div class="row">
-                                        <div class="col-xl-4 col-md-4 col-12 mb-1">
-                                            <x-forms.text label="SKU" inputName="sku"
-                                                placeholder="Enter SKU" :isRequired='true' :isReadonly='false'
-                                                defaultValue="" />
-                                        </div>
+                                    <div class="col-xl-4 col-md-4 col-12 mb-1">
+                                        <x-forms.text label="Barcode" inputName="barcode"
+                                            placeholder="Enter Barcode" :isRequired='true' :isReadonly='false'
+                                            defaultValue="" />
                                     </div>
-                                    <div class="row">
-                                        <div class="col-xl-4 col-md-4 col-12 mb-1">
-                                            <x-forms.text label="Barcode" inputName="barcode"
-                                                placeholder="Enter Barcode" :isRequired='true' :isReadonly='false'
-                                                defaultValue="" />
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-xl-4 col-md-4 col-12 mb-1">
-                                            <input type="hidden" name="track_qty" value="no">
-                                            <input type="checkbox" name="track_qty"  value="yes" checked>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-xl-4 col-md-4 col-12 mb-1">
-                                            <x-forms.text label="Quantity" inputName="qty"
-                                                placeholder="Enter Quantity" :isRequired='true' :isReadonly='false'
-                                                defaultValue="" />
-                                        </div>
+                                    {{-- <div class="col-xl-4 col-md-4 col-12 mb-1">
+                                        <label for="track_qty">Track QTY</label>
+                                        <input type="hidden" name="track_qty" value="no">
+                                        <input type="checkbox" name="track_qty"  value="yes" checked>
+                                    </div> --}}
+                                    <div class="col-xl-4 col-md-4 col-12 mb-1">
+                                        <x-forms.text label="Quantity" inputName="qty"
+                                            placeholder="Enter Quantity" :isRequired='true' :isReadonly='false'
+                                            defaultValue="" />
                                     </div>
                                     
                                 </div>
