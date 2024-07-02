@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProductRequest;
+use App\Http\Requests\UpdateProductRequest;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
@@ -51,7 +52,6 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        // dd($request->validated());
         $validated = $request->validated();
         DB::beginTransaction();
         try {
@@ -72,7 +72,7 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
-        $product = Product::findOrFail($id);
+        $product = Product::findOrFail(decrypt($id));
         return view('admin.product.show',compact('product'));
     }
 
@@ -81,7 +81,7 @@ class ProductController extends Controller
      */
     public function edit(string $id)
     {
-        $product = Product::findOrFail($id);
+        $product = Product::findOrFail(decrypt($id));
         $categories = Category::all();
         $subCategories = SubCategory::all();
         $brands = Brand::all();
@@ -91,7 +91,7 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateProductRequest $request, string $id)
     {
         $validated = $request->validated();
         DB::beginTransaction();

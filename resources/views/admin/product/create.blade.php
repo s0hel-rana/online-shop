@@ -43,7 +43,7 @@ $links = [
                                 <div class="row">
                                     <div class="col-xl-4 col-md-4 col-12 mb-1">
                                         <div class="form-group">
-                                            <x-forms.text label="Title" inputName="title"
+                                            <x-forms.text label="Title" inputName="name"
                                                 placeholder="Enter Title" :isRequired='true' :isReadonly='false'
                                                 defaultValue="" />
                                         </div>

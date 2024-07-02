@@ -11,7 +11,6 @@ Product
 <!-- Content Header (Page header) -->
 @php
 $links = [
-'Home'=>route('dashboard'),
 'Product Details'=>''
 ]
 @endphp
@@ -37,24 +36,52 @@ $links = [
                         <table class="table">
                             <tbody>
                                 <tr>
-                                    <th>Group : </th>
-                                    <td>{{ $product->group ? $product->group->name : '' }}</td>
-                                </tr>
-                                <tr>
                                     <th>Name : </th>
                                     <td>{{ $product->name }}</td>
                                 </tr>
                                 <tr>
-                                    <th>Mobile : </th>
-                                    <td>{{ $product->mobile }}</td>
+                                    <th>Description : </th>
+                                    <td>{{ $product->description }}</td>
                                 </tr>
                                 <tr>
-                                    <th>Address : </th>
-                                    <td>{{ $product->address }}</td>
+                                    <th>Price : </th>
+                                    <td>{{ $product->price }}</td>
                                 </tr>
                                 <tr>
-                                    <th>Email : </th>
-                                    <td>{{ $product->email }}</td>
+                                    <th>Compare Price : </th>
+                                    <td>{{ $product->compare_price }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Category : </th>
+                                    <td>{{ $product->category->name }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Sub Category : </th>
+                                    <td>{{ $product->subCategory->name }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Brand : </th>
+                                    <td>{{ $product->brand->name }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Featured : </th>
+                                    <td>{{ $product->is_featured }}</td>
+                                </tr>
+                                <tr>
+                                    <th>SKU : </th>
+                                    <td>{{ $product->sku }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Barcode : </th>
+                                    <td>{{ $product->barcode }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Track QTY : </th>
+                                    <td>{{ $product->track_qty }}</td>
+                                </tr>
+                                <tr>
+                                    <th>QTY : </th>
+                                    <td>{{ $product->qty }}</td>
                                 </tr>
                                 <tr>
                                     <th>Status : </th>
