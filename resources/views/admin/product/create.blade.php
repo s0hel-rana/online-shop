@@ -80,10 +80,9 @@ $links = [
                                             :options="$brands" optionId="id" optionValue="name" />
                                     </div>
                                     <div class="col-xl-4 col-md-4 col-12 mb-1">
-                                        <div class="form-group">
-                                            <label for="image">Image</label>
-                                            <input type="file" name="image" id="image">
-                                        </div>
+                                        <x-forms.file label="Image" inputName="image"
+                                            placeholder="Enter Image" :isRequired='true' :isReadonly='false'
+                                            defaultValue="" />
                                     </div>
                                     {{-- <div class="col-xl-4 col-md-4 col-12 mb-1">
                                         <x-forms.static-select label="Featured" inputName="is_featured"

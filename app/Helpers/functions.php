@@ -1,6 +1,6 @@
 <?php
 
-
+use App\Models\Category;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\UploadedFile;
@@ -11,6 +11,10 @@ function getTimeByFormat($time, $format = 'g:i:s A')
         return '-';
     }
     return Carbon::parse($time)->format($format);
+}
+
+function getCategories(){
+    return Category::orderBy('name', 'asc')->where('status', 'active')->get();
 }
 
 
