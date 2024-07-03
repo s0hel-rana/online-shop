@@ -110,7 +110,7 @@
                             <div class="right">
                                 <div class="cat-data">
                                     <h2>{{ $cat->name }}</h2>
-                                    <p>{{ $cat->products_count }} Products</p>
+                                    <p>{{ $cat->subCategories->count() }} Sub Category</p>
                                 </div>
                             </div>
                         </div>
