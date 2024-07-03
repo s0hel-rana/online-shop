@@ -55,6 +55,15 @@ class ProductController extends Controller
         $validated = $request->validated();
         DB::beginTransaction();
         try {
+            $filename = null;
+            if ($request->hasfile('image')) {
+                $file = $request->file('image');
+                $filename = date('Ymdmhs') . '.' . $file->getClientOriginalExtension();
+                $file->move(public_path('/upload'), $filename);
+            }
+            if(isset($validated['image'])){
+                $validated['image'] = $filename ?? null;
+            }
             Product::create($validated);
             DB::commit();
         } catch (\Exception $e) {

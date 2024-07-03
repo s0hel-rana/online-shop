@@ -23,7 +23,6 @@ class StoreCategoryRequest extends FormRequest
     {
         return [
             'name'=>'required',
-            // 'slug'=>'required',?
             'image'=>'nullable',
         ];
     }

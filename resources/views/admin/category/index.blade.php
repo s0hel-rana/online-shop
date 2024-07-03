@@ -40,7 +40,7 @@ $links = [
                                         </div>
                                         <div class="col-xl-12 col-md-12 col-12 mb-1">
                                             <div class="form-group">
-                                                <label for="serial_no">Image</label>
+                                                <label for="image">Image</label>
                                                 <input type="file" name="image" id="image">
                                             </div>
                                         </div>

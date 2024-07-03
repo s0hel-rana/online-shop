@@ -32,6 +32,7 @@ class StoreProductRequest extends FormRequest
             'sku' => 'nullable',
             'barcode' => 'nullable',
             'qty' => 'required|numeric',
+            'image' => 'nullable|image',
         ];
     }
 }

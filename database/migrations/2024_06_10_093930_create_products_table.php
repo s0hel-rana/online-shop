@@ -21,6 +21,7 @@ return new class extends Migration
             $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
             $table->foreignId('sub_category_id')->constrained('sub_categories')->onDelete('cascade');
             $table->foreignId('brand_id')->constrained('brands')->onDelete('cascade');
+            $table->string('image')->nullable();
             $table->enum('is_featured', ['yes', 'no'])->default('no');
             $table->string('sku');
             $table->string('barcode')->nullable();
