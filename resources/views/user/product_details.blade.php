@@ -5,10 +5,13 @@
         <div class="container">
             <div class="row ">
                 <div class="col-md-5">
-                    <div id="product-carousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="card card-product">
+                        <img class="card-img-top" src="{{ asset('upload') }}/{{ $product->image }}" alt="">
+                    </div>
+                    {{-- <div id="product-carousel" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner bg-light">
                             <div class="carousel-item">
-                                <img class="w-100 h-100" src="{{ asset('frontend') }}/images/product-1.jpg" alt="Image">
+                                <img class="w-100 h-100" src="{{ asset('upload') }}/{{ $product->image[0] }}" alt="Image">
                             </div>
                             <div class="carousel-item active">
                                 <img class="w-100 h-100" src="{{ asset('frontend') }}/images/product-2.jpg" alt="Image">
@@ -26,7 +29,7 @@
                         <a class="carousel-control-next" href="#product-carousel" data-bs-slide="next">
                             <i class="fa fa-2x fa-angle-right text-dark"></i>
                         </a>
-                    </div>
+                    </div> --}}
                 </div>
                 <div class="col-md-7">
                     <div class="bg-light right">
