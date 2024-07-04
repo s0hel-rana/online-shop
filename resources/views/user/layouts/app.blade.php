@@ -51,6 +51,16 @@
 @include('user.partials.header')
 
 <main>
+	<section class="section-5 pt-3 pb-3 mb-3 bg-white">
+        <div class="container">
+            <div class="light-font">
+                <ol class="breadcrumb primary-color mb-0">
+                    <li class="breadcrumb-item"><a class="white-text" href="{{ route('home') }}">Home</a></li>
+                    <li class="breadcrumb-item active"><a class="white-text" href="{{ route('shop.index') }}">Shop</a></li>
+                </ol>
+            </div>
+        </div>
+    </section>
     @yield('content')
 </main>
 @include('user.partials.footer')

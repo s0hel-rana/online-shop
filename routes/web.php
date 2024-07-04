@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/',[UserHomeController::class,'index'])->name('home');
 Route::get('/shop',[ShopController::class,'index'])->name('shop.index');
+Route::get('/product-details/{slug}',[UserHomeController::class,'show'])->name('product.details');
 
 Route::group(['prefix' => 'admin'],function(){
     Route::group(['middleware'=>'admin.guest'],function(){

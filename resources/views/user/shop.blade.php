@@ -1,7 +1,7 @@
 @extends('user.layouts.app')
 @section('content')
 <main>
-    <section class="section-5 pt-3 pb-3 mb-3 bg-white">
+    {{-- <section class="section-5 pt-3 pb-3 mb-3 bg-white">
         <div class="container">
             <div class="light-font">
                 <ol class="breadcrumb primary-color mb-0">
@@ -10,7 +10,7 @@
                 </ol>
             </div>
         </div>
-    </section>
+    </section> --}}
 
     <section class="section-6 pt-5">
         <div class="container">
@@ -123,7 +123,7 @@
                         <div class="col-md-4">
                             <div class="card product-card">
                                 <div class="product-image position-relative">
-                                    <a href="" class="product-img"><img class="card-img-top" src="{{ asset('upload') }}/{{ $product->image }}" alt=""></a>
+                                    <a href="{{ route('product.details', $product->slug) }}" class="product-img"><img class="card-img-top" src="{{ asset('upload') }}/{{ $product->image }}" alt=""></a>
                                     <a class="whishlist" href="222"><i class="far fa-heart"></i></a>                            
 
                                     <div class="product-action">

@@ -37,9 +37,11 @@ class HomeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $slug)
     {
-        //
+        $product = Product::where('slug', $slug)->first();
+        $relatedProduct = Product::where('status', 'active')->orderBy('id', 'asc')->take(8)->get();
+        return view('user.product_details',compact('product','relatedProduct'));
     }
 
     /**
